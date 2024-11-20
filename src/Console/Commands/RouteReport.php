@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use ReflectionClass;
 use ReflectionException;
+use SbuicoDev\LaravelRouteReport\Routing\Router;
 
 class RouteReport extends Command
 {
@@ -34,6 +35,8 @@ class RouteReport extends Command
             $this->error("This command is only available in development environment");
             return Command::FAILURE;
         }
+
+        App::bind('router', Router::class);
 
         $this->line('-----------------------------------');
         $this->line(' Route Analysis ');

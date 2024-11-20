@@ -11,7 +11,8 @@ class Router extends BaseRouter
 {
     public function __construct(Dispatcher $events, Container $container = null)
     {
-        parent::__construct($events, $container);
+        $this->events = $events;
         $this->routes = new RouteCollection;
+        $this->container = $container ?: new Container;
     }
 }
