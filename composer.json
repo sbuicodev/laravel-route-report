@@ -1,7 +1,6 @@
 {
   "name": "sbuicodev/laravel-route-report",
   "type": "library",
-  "version": "1.0.0",
   "license": "MIT",
   "description": "A Laravel package that provides a command to analyze route definitions and detect duplicate routes and non-existent actions.",
   "authors": [

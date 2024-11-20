@@ -16,11 +16,13 @@ class RouteCollection extends BaseRouteCollection
 
     protected function addToCollections($route)
     {
-        parent::addToCollections($route);
-
         $domainAndUri = $route->getDomain() . $route->uri();
 
         foreach ($route->methods() as $method) {
+            /*|-----------------------------------------------------
+              | Intercepting duplicate routes
+              |-----------------------------------------------------
+            */
             if (isset($this->routes[$method][$domainAndUri])) {
                 $this->duplicates->push(['method' => $method, 'uri' => $domainAndUri, 'actions' => collect()]);
 
@@ -31,7 +33,12 @@ class RouteCollection extends BaseRouteCollection
 
                 $item['actions']->push($route->getActionName());
             }
+            /*|----------------------------------------------------- */
+
+            $this->routes[$method][$domainAndUri] = $route;
         }
+
+        $this->allRoutes[$method . $domainAndUri] = $route;
     }
 
     public function getDuplicates(): Collection
