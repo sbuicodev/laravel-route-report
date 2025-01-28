@@ -50,7 +50,7 @@ class RouteReport extends Command
          */
         $duplicates = $routes->getDuplicates();
         if ($duplicates->isNotEmpty()) {
-            $this->warn('Sono state trovate le seguenti route duplicate:');
+            $this->warn('The following duplicate routes were found:');
             $this->table(['Route', 'Method', 'Actions'], $duplicates->map(fn($duplicate) => [
                 $duplicate['uri'],
                 $duplicate['method'],
@@ -76,7 +76,7 @@ class RouteReport extends Command
             }
         }
         if (!empty($nonExistingActions)) {
-            $this->warn('Sono state trovate le seguenti route con azioni non esistenti:');
+            $this->warn('The following routes with non-existing actions were found:');
             $this->table(['Route', 'Method', 'Action'], $nonExistingActions, 'box');
         }
 
